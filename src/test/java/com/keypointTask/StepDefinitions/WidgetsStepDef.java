@@ -1,10 +1,12 @@
 package com.keypointTask.StepDefinitions;
 
 import com.keypointTask.Pages.Widgets_page;
+import com.keypointTask.Utilities.BrowserUtils;
 import com.keypointTask.Utilities.Driver;
 import io.cucumber.java.en.*;
 import static org.junit.Assert.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 public class WidgetsStepDef {
@@ -17,6 +19,8 @@ public class WidgetsStepDef {
 
         String ExpectedHoverMessage = message;
 
+        BrowserUtils.waitFor(1);
+
         if(message.contains("Button")){
 
             action.moveToElement(Widget.HoverMeToSeeButton).perform();
@@ -26,7 +30,9 @@ public class WidgetsStepDef {
             action.moveToElement(Widget.HoverMeToSeeTextBox).perform();
         }
 
-        String ActualHoverMessage = Driver.get().findElement(By.xpath("//*[contains(text(),'"+message+"')]")).getText();
+        WebElement ActualHover = Driver.get().findElement(By.className("tooltip-inner"));
+
+        String ActualHoverMessage = ActualHover.getAttribute("innerHTML");
 
         assertEquals(ExpectedHoverMessage, ActualHoverMessage);
 

@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features" ,
         glue = "com/keypointTask/StepDefinitions",
         dryRun = false,
-        tags = "@sauceDemo"
+        tags = "@wip"
 )
 
 public class CukesRunner {
